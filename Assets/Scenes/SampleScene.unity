@@ -463,7 +463,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 100
-  _cash: 10000
+  _cash: 0
   _killsAmount: 0
   _healthText: {fileID: 337025801}
   _cashText: {fileID: 24010571}
