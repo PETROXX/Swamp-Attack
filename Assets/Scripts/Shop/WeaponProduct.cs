@@ -18,8 +18,9 @@ public class WeaponProduct : Product
 
     public override void BuyProduct()
     {
-        if (Player.TryBuyProduct(Price, this))
+        if (Player.CanAffordProduct(Price, this))
         {
+            Player.BuyProduct(Price, this);
             Destroy(gameObject);
             _shop.AddAmmoProduct(Weapon.AmmoPrefab, this);
         }

@@ -6,6 +6,7 @@ using System.Collections;
 
 [RequireComponent(typeof(PlayerMovement))]
 [RequireComponent(typeof(PlayerAnimation))]
+[RequireComponent(typeof(PlayerShooting))]
 
 public class Player : MonoBehaviour
 {
@@ -13,16 +14,15 @@ public class Player : MonoBehaviour
     [SerializeField] private float _cash;
     [SerializeField] private int _killsAmount;
 
+    // Вынести в отдельный класс
     [SerializeField] private TMP_Text _healthText;
     [SerializeField] private TMP_Text _cashText;
     [SerializeField] private TMP_Text _ammoText;
     [SerializeField] private TMP_Text _killsText;
 
-    [SerializeField] private List<Weapon> _weapons;
     [SerializeField] private Weapon _currentWeapon;
 
     [SerializeField] private Image _weaponIcon;
-    [SerializeField] private Transform _bulletSpawnPosition;
     [SerializeField] private GameObject _explosionFX;
 
     [SerializeField] private TextController _textController;
@@ -31,11 +31,9 @@ public class Player : MonoBehaviour
 
     private Spawner _spawner;
 
-    private PlayerMovement _playerMovement;
     private PlayerAnimation _playerAnimations;
+    private PlayerShooting _playerShooting;
     private bool _isDead;
-
-    private float _nextFire;
 
     public bool IsDead => _isDead;
 
@@ -43,57 +41,18 @@ public class Player : MonoBehaviour
     {
         _spawner = FindObjectOfType<Spawner>();
         _isDead = false;
-        _nextFire = 0f;
 
-        foreach(Weapon weapon in _weapons)
-        {
-            weapon.InitializeWeapon(_bulletSpawnPosition, this);
-        }
-
-        _playerMovement = GetComponent<PlayerMovement>();
-        _currentWeapon = _weapons[0];
         _playerAnimations = GetComponent<PlayerAnimation>();
+        _playerShooting = GetComponent<PlayerShooting>();
     }
 
     private void Update()
     {
         UpdateUI();
-        HandleShootingInput();
-
+        
         if (Input.GetKeyDown(KeyCode.Tab))
             _shopPanel.SetActive(!_shopPanel.activeInHierarchy);
 
-    }
-
-    //В отдельный класс
-    private void HandleShootingInput()
-    {
-        if (_shopPanel.activeInHierarchy)
-            return;
-
-        if (_currentWeapon.FireRate == 0 && Input.GetButtonDown("Fire1"))
-        {   
-            _currentWeapon.Shoot(_playerMovement.LookDirection);
-        }
-        else
-        {
-            if (Input.GetButton("Fire1") && Time.time > _nextFire && _currentWeapon.FireRate > 0)
-            {
-                _nextFire = Time.time + _currentWeapon.FireRate;
-                _currentWeapon.Shoot(_playerMovement.LookDirection);
-            }
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-            _currentWeapon.Reload();
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            _currentWeapon = _weapons[0];
-        if (Input.GetKeyDown(KeyCode.Alpha2) && _weapons.Count > 1)
-            _currentWeapon = _weapons[1];
-        if (Input.GetKeyDown(KeyCode.Alpha3) && _weapons.Count > 2)
-            _currentWeapon = _weapons[2];
-        if (Input.GetKeyDown(KeyCode.Alpha4) && _weapons.Count > 3)
-            _currentWeapon = _weapons[3];
     }
 
     public void GetDamage(float damage)
@@ -163,30 +122,30 @@ public class Player : MonoBehaviour
         _killsAmount++;
     }
 
-    public bool TryBuyProduct(float productPrice, Product product)
+    public void BuyProduct(float price, Product product)
     {
-        if (_cash >= productPrice)
+        _cash -= price;
+        if (product is WeaponProduct)
         {
-            _cash -= productPrice;
-            if (product is WeaponProduct)
-            {
-                Weapon weapon = ((WeaponProduct)product).Weapon;
-                weapon.InitializeWeapon(_bulletSpawnPosition, this);
-                _weapons.Add(weapon);
-            }
-            if (product is AmmoProduct)
-            {
-                AmmoProduct ammoProduct = (AmmoProduct)product;
-                ammoProduct.Weapon.AddAmmo(ammoProduct.Ammo);
-            }
-            if (product is HealthProduct)
-            {
-                HealthProduct healthProduct = (HealthProduct)product;
-                RestoreHealth(healthProduct.Heal);
-            }    
-            return true;
+            Weapon weapon = ((WeaponProduct)product).Weapon;
+            _playerShooting.AddWeapon(weapon);
         }
-        else
-            return false;
+
+        if (product is AmmoProduct)
+        {
+            AmmoProduct ammoProduct = (AmmoProduct)product;
+            _playerShooting.AddAmmo(ammoProduct.Weapon, ammoProduct.Ammo);
+        }
+
+        if (product is HealthProduct)
+        {
+            HealthProduct healthProduct = (HealthProduct)product;
+            RestoreHealth(healthProduct.Heal);
+        }
+    }
+
+    public bool CanAffordProduct(float productPrice, Product product)
+    {
+        return _cash >= productPrice;
     }
 }

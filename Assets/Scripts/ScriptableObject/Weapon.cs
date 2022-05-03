@@ -77,7 +77,7 @@ public class Weapon : ScriptableObject
         _monoBehaviour.StartCoroutine(ReloadCooldown(_reloadSpeed));
     }
 
-    IEnumerator ReloadCooldown(float cooldown)
+    private IEnumerator ReloadCooldown(float cooldown)
     {
         if(_isInfiniteAmmo)
         {

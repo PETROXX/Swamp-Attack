@@ -18,7 +18,8 @@ public class HealthProduct : Product
 
     public override void BuyProduct()
     {
-        Player.TryBuyProduct(Price, this);
+        if (Player.CanAffordProduct(Price, this))
+            Player.BuyProduct(Price, this);
     }
 
     public override void InitializeProduct()

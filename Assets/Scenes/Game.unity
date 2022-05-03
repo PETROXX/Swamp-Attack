@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -278,6 +278,7 @@ GameObject:
   - component: {fileID: 160014581}
   - component: {fileID: 160014580}
   - component: {fileID: 160014582}
+  - component: {fileID: 160014583}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -469,14 +470,28 @@ MonoBehaviour:
   _cashText: {fileID: 24010571}
   _ammoText: {fileID: 2002022451}
   _killsText: {fileID: 1847197228}
-  _weapons:
-  - {fileID: 11400000, guid: a8d10652296fd7248a325fd87457c488, type: 2}
   _currentWeapon: {fileID: 0}
   _weaponIcon: {fileID: 563182821}
-  _bulletSpawnPosition: {fileID: 2038574709}
   _explosionFX: {fileID: 773805495}
   _textController: {fileID: 853079914}
   _shopPanel: {fileID: 1062790938}
+--- !u!114 &160014583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160014574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52b3a36aa176fee45b2d868519236893, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weapons:
+  - {fileID: 11400000, guid: a8d10652296fd7248a325fd87457c488, type: 2}
+  _currentWeapon: {fileID: 0}
+  _bulletSpawnPosition: {fileID: 2038574709}
+  _playerMovement: {fileID: 160014580}
 --- !u!1 &252528531
 GameObject:
   m_ObjectHideFlags: 0
