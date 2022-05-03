@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool IsMoving { get; private set; }
     public bool IsJumping => !_isGrounded;
+
     public Vector3 LookDirection
     {
         get
@@ -29,25 +30,29 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
         _playerRig = GetComponent<Rigidbody2D>();
         _playerSprite = GetComponent<SpriteRenderer>();
         _player = GetComponent<Player>();
     }
 
-    void Update()
+    private void Update()
     {
         if (_player.IsDead)
             return;
+
         _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, 0.15f, _groundLayer);
         float moveDir = Input.GetAxis("Horizontal");
         IsMoving = Mathf.Abs(moveDir) >= 0.1;
+
         if (moveDir <= 0)
             transform.eulerAngles = new Vector3(0, 180, 0);
         else
             transform.eulerAngles = Vector3.zero;
+
         transform.position += new Vector3(moveDir * _speed * Time.deltaTime, 0);
+
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
             Jump();
     }
@@ -56,5 +61,4 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerRig.AddForce(Vector2.up * _jumpForce);
     }
-
 }

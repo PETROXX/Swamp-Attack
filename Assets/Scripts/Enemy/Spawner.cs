@@ -26,21 +26,25 @@ public class Spawner : MonoBehaviour
         StartCoroutine(Spawn());
     }
 
-    IEnumerator Spawn()
+    private IEnumerator Spawn()
     {
         _enemyPerSpawn = _wave.WaveNumber + Random.Range(0, _wave.WaveNumber + 1);
+
         for (int i = 0; i < _enemyPerSpawn; i++)
         {
-            GameObject g = Instantiate(_zombie, _spawnPoint.position, Quaternion.identity);
+            GameObject enemy = Instantiate(_zombie, _spawnPoint.position, Quaternion.identity);
+
             if (_enemies.Count >= _maxEnemyCount)
             {
                 _enemies.RemoveAt(0);
-                _enemies.Add(g);
+                _enemies.Add(enemy);
             }
             else
-                _enemies.Add(g);
+                _enemies.Add(enemy);
+
         }
         yield return new WaitForSeconds(_spawnCooldown);
+
         if (_isWaveEnabled)
             StartCoroutine(Spawn());
     }

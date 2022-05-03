@@ -44,10 +44,12 @@ public class Player : MonoBehaviour
         _spawner = FindObjectOfType<Spawner>();
         _isDead = false;
         _nextFire = 0f;
+
         foreach(Weapon weapon in _weapons)
         {
             weapon.InitializeWeapon(_bulletSpawnPosition, this);
         }
+
         _playerMovement = GetComponent<PlayerMovement>();
         _currentWeapon = _weapons[0];
         _playerAnimations = GetComponent<PlayerAnimation>();
@@ -57,11 +59,13 @@ public class Player : MonoBehaviour
     {
         UpdateUI();
         HandleShootingInput();
+
         if (Input.GetKeyDown(KeyCode.Tab))
             _shopPanel.SetActive(!_shopPanel.activeInHierarchy);
 
     }
 
+    //В отдельный класс
     private void HandleShootingInput()
     {
         if (_shopPanel.activeInHierarchy)
@@ -79,6 +83,7 @@ public class Player : MonoBehaviour
                 _currentWeapon.Shoot(_playerMovement.LookDirection);
             }
         }
+
         if (Input.GetKeyDown(KeyCode.R))
             _currentWeapon.Reload();
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -94,6 +99,7 @@ public class Player : MonoBehaviour
     public void GetDamage(float damage)
     {
         _health -= damage;
+
         if (_health <= 0)
             Die();
         else
@@ -113,34 +119,44 @@ public class Player : MonoBehaviour
         _textController.SetText("Game Over!", Color.red);
     }
 
-    IEnumerator CooldownAfterDeath()
+    private IEnumerator CooldownAfterDeath()
     {
         yield return new WaitForSeconds(0.7f);
+
         GetComponent<SpriteRenderer>().enabled = false;
         _isDead = true;
     }
 
+    // В отдельный класс
     private void UpdateUI()
     {
         _healthText.text = $"HP:{_health}";
         _cashText.text = $"Cash: {_cash}$";
+
         if (!_currentWeapon.NoAmmo)
         {
             if (!_currentWeapon.IsReloading)
+            {
                 if (!_currentWeapon.IsInfiniteAmmo)
                     _ammoText.text = $"Ammo: {_currentWeapon.CurrentAmmo}/{_currentWeapon.Ammo}";
                 else
                     _ammoText.text = $"Ammo: {_currentWeapon.CurrentAmmo}/{_currentWeapon.CellSize}";
+            }
             else
+            {
                 _ammoText.text = "Reloading...";
+            }
         }
         else
+        {
             _ammoText.text = "No ammo!";
+        }
 
         _weaponIcon.sprite = _currentWeapon.WeaponIcon;
         _killsText.text = $"{_killsAmount} kills";
     }
 
+    //В событие
     public void KilledEnemy(int cash)
     {
         _cash += cash;
@@ -149,7 +165,6 @@ public class Player : MonoBehaviour
 
     public bool TryBuyProduct(float productPrice, Product product)
     {
-
         if (_cash >= productPrice)
         {
             _cash -= productPrice;

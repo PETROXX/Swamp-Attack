@@ -44,14 +44,17 @@ public class Wave : MonoBehaviour
         if (!_isWaveEnded)
         {
             _timerText.text = $"{_waveStopwatch.Elapsed.Minutes}:{_waveStopwatch.Elapsed.Seconds}";
+
             if (_waveStopwatch.Elapsed.TotalSeconds >= _waveLength)
                 EndWave();
-            var xSize = _waveStopwatch.ElapsedMilliseconds / 1000f / _waveLength;
+
+            float xSize = _waveStopwatch.ElapsedMilliseconds / 1000f / _waveLength;
             _progressbar.localScale = new Vector3(xSize, 1, 1);
         }
         else
         {
             _timerText.text = $"{_cooldownStopwatch.Elapsed.Minutes}:{_cooldownStopwatch.Elapsed.Seconds}";
+
             if (_cooldownStopwatch.Elapsed.TotalSeconds >= _waveCooldown)
                 EndCooldown();
         }
