@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using TMPro;
-using System.Collections.Generic;
+using System;
 using UnityEngine.UI;
 using System.Collections;
 
@@ -36,6 +36,12 @@ public class Player : MonoBehaviour
     private bool _isDead;
 
     public bool IsDead => _isDead;
+    public float Health => _health;
+    public float Cash => _cash;
+    public int KillsAmount => _killsAmount;
+
+    public event Action OnPlayerHealthChanged;
+    public event Action OnEnemyKilled;
 
     private void Start()
     {
@@ -48,16 +54,14 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        UpdateUI();
-        
         if (Input.GetKeyDown(KeyCode.Tab))
             _shopPanel.SetActive(!_shopPanel.activeInHierarchy);
-
     }
 
     public void GetDamage(float damage)
     {
         _health -= damage;
+        OnPlayerHealthChanged?.Invoke();
 
         if (_health <= 0)
             Die();
@@ -68,6 +72,7 @@ public class Player : MonoBehaviour
     public void RestoreHealth(float health)
     {
         _health += health;
+        OnPlayerHealthChanged?.Invoke();
     }
 
     private void Die()
@@ -87,44 +92,20 @@ public class Player : MonoBehaviour
     }
 
     // В отдельный класс
-    private void UpdateUI()
-    {
-        _healthText.text = $"HP:{_health}";
-        _cashText.text = $"Cash: {_cash}$";
 
-        if (!_currentWeapon.NoAmmo)
-        {
-            if (!_currentWeapon.IsReloading)
-            {
-                if (!_currentWeapon.IsInfiniteAmmo)
-                    _ammoText.text = $"Ammo: {_currentWeapon.CurrentAmmo}/{_currentWeapon.Ammo}";
-                else
-                    _ammoText.text = $"Ammo: {_currentWeapon.CurrentAmmo}/{_currentWeapon.CellSize}";
-            }
-            else
-            {
-                _ammoText.text = "Reloading...";
-            }
-        }
-        else
-        {
-            _ammoText.text = "No ammo!";
-        }
-
-        _weaponIcon.sprite = _currentWeapon.WeaponIcon;
-        _killsText.text = $"{_killsAmount} kills";
-    }
 
     //В событие
     public void KilledEnemy(int cash)
     {
         _cash += cash;
         _killsAmount++;
+        OnEnemyKilled?.Invoke();
     }
 
     public void BuyProduct(float price, Product product)
     {
         _cash -= price;
+
         if (product is WeaponProduct)
         {
             Weapon weapon = ((WeaponProduct)product).Weapon;

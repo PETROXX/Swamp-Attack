@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//почему не анимация
 public class TextController : MonoBehaviour
 {
     [SerializeField] private float _sizeChangeSpeed;
@@ -38,7 +39,7 @@ public class TextController : MonoBehaviour
         StartCoroutine(ClearTextTimer(timer));
     }
 
-    IEnumerator ClearTextTimer(float time)
+    private IEnumerator ClearTextTimer(float time)
     {
         yield return new WaitForSeconds(time);
         _text.text = "";

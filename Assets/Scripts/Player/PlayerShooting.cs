@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerShooting : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private PlayerMovement _playerMovement;
 
     private float _nextFire;
+
+    public Weapon CurrentWeapon => _currentWeapon;
+
+    public event Action OnShootPerformed;
+    public event Action OnWeaponSwitched;
 
     private void Start()
     {
@@ -38,6 +44,7 @@ public class PlayerShooting : MonoBehaviour
         if (_currentWeapon.FireRate == 0 && Input.GetButtonDown("Fire1"))
         {
             _currentWeapon.Shoot(_playerMovement.LookDirection);
+            OnShootPerformed?.Invoke();
         }
         else
         {
@@ -45,6 +52,7 @@ public class PlayerShooting : MonoBehaviour
             {
                 _nextFire = Time.time + _currentWeapon.FireRate;
                 _currentWeapon.Shoot(_playerMovement.LookDirection);
+                OnShootPerformed?.Invoke();
             }
         }
     }
@@ -55,16 +63,28 @@ public class PlayerShooting : MonoBehaviour
             _currentWeapon.Reload();
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             _currentWeapon = _weapons[0];
+            OnWeaponSwitched?.Invoke();
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha2) && _weapons.Count > 1)
+        {
             _currentWeapon = _weapons[1];
+            OnWeaponSwitched?.Invoke();
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha3) && _weapons.Count > 2)
+        {
             _currentWeapon = _weapons[2];
+            OnWeaponSwitched?.Invoke();
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha4) && _weapons.Count > 3)
+        {
             _currentWeapon = _weapons[3];
+            OnWeaponSwitched?.Invoke();
+        }
     }
 
     public void AddWeapon(Weapon weapon)

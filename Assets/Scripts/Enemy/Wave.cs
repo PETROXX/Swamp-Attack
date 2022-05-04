@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using UnityEngine;
 using TMPro;
+using System;
 
 [RequireComponent(typeof(Spawner))]
 
@@ -37,7 +38,6 @@ public class Wave : MonoBehaviour
         _waveStopwatch.Start();
         _waveText.text = $"Wave {_waveNumber}";
     }
-
 
     private void Update()
     {
