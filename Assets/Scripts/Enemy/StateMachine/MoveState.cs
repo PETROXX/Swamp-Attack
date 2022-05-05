@@ -1,6 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
+[RequireComponent(typeof(SpriteRenderer))]
+[RequireComponent(typeof(Rigidbody2D))]
 
 public class MoveState : State
 {
@@ -18,17 +19,19 @@ public class MoveState : State
 
     private void Update()
     {
-        int moveCoef;
+        int direction;
+
         if (transform.position.x - Target.transform.position.x < 0)
         {
             _spriteRenderer.flipX = false;
-            moveCoef = 1;
+            direction = 1;
         }
         else
         {
             _spriteRenderer.flipX = true;
-            moveCoef = -1;
+            direction = -1;
         }
-        _rig.MovePosition(new Vector2(_rig.position.x + _speed * Time.deltaTime * moveCoef, _rig.position.y));
+
+        _rig.MovePosition(new Vector2(_rig.position.x + _speed * Time.deltaTime * direction, _rig.position.y));
     }
 }

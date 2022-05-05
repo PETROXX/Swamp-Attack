@@ -10,6 +10,7 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private Transform _bulletSpawnPosition;
 
     [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private GameObject _shopPanel;
 
     private float _nextFire;
 
@@ -38,8 +39,8 @@ public class PlayerShooting : MonoBehaviour
 
     private void Shooting()
     {
-        //if (_shopPanel.activeInHierarchy)
-        //    return;
+        if (_shopPanel.activeInHierarchy)
+            return;
 
         if (_currentWeapon.FireRate == 0 && Input.GetButtonDown("Fire1"))
         {

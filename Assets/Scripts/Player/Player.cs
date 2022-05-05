@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
-using TMPro;
 using System;
-using UnityEngine.UI;
 using System.Collections;
 
 [RequireComponent(typeof(PlayerMovement))]
@@ -14,15 +12,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float _cash;
     [SerializeField] private int _killsAmount;
 
-    // Вынести в отдельный класс
-    [SerializeField] private TMP_Text _healthText;
-    [SerializeField] private TMP_Text _cashText;
-    [SerializeField] private TMP_Text _ammoText;
-    [SerializeField] private TMP_Text _killsText;
-
-    [SerializeField] private Weapon _currentWeapon;
-
-    [SerializeField] private Image _weaponIcon;
     [SerializeField] private GameObject _explosionFX;
 
     [SerializeField] private TextController _textController;
@@ -91,10 +80,6 @@ public class Player : MonoBehaviour
         _isDead = true;
     }
 
-    // В отдельный класс
-
-
-    //В событие
     public void KilledEnemy(int cash)
     {
         _cash += cash;

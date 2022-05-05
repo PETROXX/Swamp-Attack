@@ -173,6 +173,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14caefb10613ea74c8fe674b4dc4289c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider: {fileID: 6446774672367165635}
+  _animator: {fileID: 6446774672367165639}
   _health: 100
   _rewardForKill: 50
 --- !u!114 &988194672

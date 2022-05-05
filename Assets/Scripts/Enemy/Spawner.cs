@@ -43,6 +43,7 @@ public class Spawner : MonoBehaviour
                 _enemies.Add(enemy);
 
         }
+
         yield return new WaitForSeconds(_spawnCooldown);
 
         if (_isWaveEnabled)
