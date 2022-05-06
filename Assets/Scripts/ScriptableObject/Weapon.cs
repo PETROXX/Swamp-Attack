@@ -59,6 +59,7 @@ public class Weapon : ScriptableObject
     {
         if(_isReloading)
             return;
+
         if (_currentAmmo > 0)
         {
             GameObject bullet = Instantiate(_bulletPrefab, _bulletSpawnPosition.position, Quaternion.identity);
@@ -88,7 +89,9 @@ public class Weapon : ScriptableObject
         else if (_ammo != 0)
         {
             yield return new WaitForSeconds(cooldown);
+
             _ammo += _currentAmmo;
+
             if (_ammo >= _cellSize)
             {
                 _ammo -= _cellSize;
@@ -99,6 +102,7 @@ public class Weapon : ScriptableObject
                 _currentAmmo = _ammo;
                 _ammo = 0;
             }
+
             _currentAmmo = _cellSize;
             _isReloading = false;
         }

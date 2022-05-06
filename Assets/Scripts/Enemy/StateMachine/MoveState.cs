@@ -2,19 +2,30 @@ using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Enemy))]
 
 public class MoveState : State
 {
-    [SerializeField] private float _speed;
-
+    private float _speed;
     private SpriteRenderer _spriteRenderer;
-    private Rigidbody2D _rig;
+    private Rigidbody2D _rigidbody;
+    private Enemy _enemy;
 
     private void Start()
     {
-        _speed = Random.Range(_speed, _speed * 2f);
+        _enemy = GetComponent<Enemy>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _rig = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+
+        _enemy.OnSpeedUpdated += ChangeSpeed;
+
+        _speed = _enemy.Speed;
+        _speed = Random.Range(_speed, _speed * 1.5f);
+    }
+
+    private void ChangeSpeed()
+    {
+        _speed = _enemy.Speed;
     }
 
     private void Update()
@@ -32,6 +43,11 @@ public class MoveState : State
             direction = -1;
         }
 
-        _rig.MovePosition(new Vector2(_rig.position.x + _speed * Time.deltaTime * direction, _rig.position.y));
+        _rigidbody.MovePosition(new Vector2(_rigidbody.position.x + _speed * Time.deltaTime * direction, _rigidbody.position.y));
+    }
+    
+    public void SetSpeed(float speed)
+    {
+        _speed = speed;
     }
 }

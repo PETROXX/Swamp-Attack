@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 988194684}
   - component: {fileID: 988194685}
   - component: {fileID: 988194686}
+  - component: {fileID: 1639474141481110187}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -175,8 +176,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 6446774672367165635}
   _animator: {fileID: 6446774672367165639}
+  _remoteConfig: {fileID: 1639474141481110187}
   _health: 100
   _rewardForKill: 50
+  _speed: 7
+  _damage: 0
 --- !u!114 &988194672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +223,6 @@ MonoBehaviour:
   _transitions:
   - {fileID: 988194673}
   - {fileID: 988194686}
-  _speed: 7
 --- !u!114 &988194675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,7 +252,6 @@ MonoBehaviour:
   - {fileID: 988194672}
   - {fileID: 988194684}
   - {fileID: 988194686}
-  _damage: 10
   _attackCooldown: 1
   _attackDistance: 1
 --- !u!114 &988194677
@@ -305,3 +307,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetState: {fileID: 988194685}
+--- !u!114 &1639474141481110187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6446774672367165633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78f77a5b050d3f449a291307e449d45f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

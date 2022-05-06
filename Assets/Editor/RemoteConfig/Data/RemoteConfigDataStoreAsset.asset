@@ -12,8 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
   m_Name: RemoteConfigDataStoreAsset
   m_EditorClassIdentifier: 
-  _rsKeyList: '[]'
-  _rsLastCachedKeyList: '[]'
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"2d6640e9-0729-4e40-82d1-9c3a61b82903\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"enemyHealth\",\r\n      \"type\": \"float\",\r\n     
+    \"value\": 100.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"3f03ee55-caa2-42d6-b276-575e2bd6ab08\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"enemySpeed\",\r\n      \"type\": \"float\",\r\n      \"value\": 2.0\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"528acd50-ad21-4e3a-ba87-5027c0e33da6\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"enemyDamage\",\r\n      \"type\": \"float\",\r\n     
+    \"value\": 2.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"6e8fc946-d93b-4947-bbd8-08a0261512a5\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"enemiesPerSpawn\",\r\n      \"value\": 1,\r\n      \"type\": \"int\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"4f951d8e-7a87-4241-86bd-70323f2cb83c\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"spawnRate\",\r\n      \"value\": 1.0,\r\n     
+    \"type\": \"float\"\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"d7419ce5-978a-45cf-80b2-25a6eb442eb3\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"waveLength\",\r\n      \"value\": 15.0,\r\n      \"type\": \"float\"\r\n   
+    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"2d6640e9-0729-4e40-82d1-9c3a61b82903\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"enemyHealth\",\r\n      \"type\": \"float\",\r\n     
+    \"value\": 100.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"3f03ee55-caa2-42d6-b276-575e2bd6ab08\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"enemySpeed\",\r\n      \"type\": \"float\",\r\n      \"value\": 2.0\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"528acd50-ad21-4e3a-ba87-5027c0e33da6\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"enemyDamage\",\r\n      \"type\": \"float\",\r\n     
+    \"value\": 2.0\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"6e8fc946-d93b-4947-bbd8-08a0261512a5\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"enemiesPerSpawn\",\r\n      \"value\": 1,\r\n      \"type\": \"int\"\r\n   
+    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"4f951d8e-7a87-4241-86bd-70323f2cb83c\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"spawnRate\",\r\n      \"value\": 1.0,\r\n     
+    \"type\": \"float\"\r\n    }\r\n  },\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\":
+    \"d7419ce5-978a-45cf-80b2-25a6eb442eb3\"\r\n    },\r\n    \"rs\": {\r\n     
+    \"key\": \"waveLength\",\r\n      \"value\": 15.0,\r\n      \"type\": \"float\"\r\n   
+    }\r\n  }\r\n]"
   _environments: "[\r\n  {\r\n    \"projectId\": \"4153f327-f2d1-4b7d-905d-3b14bb5e6777\",\r\n   
     \"name\": \"production\",\r\n    \"id\": \"9537c8a3-7a00-43db-81e4-44f2796ad8fa\",\r\n   
     \"isDefault\": true,\r\n    \"createdAt\": \"2022-05-04T19:08:58Z\",\r\n    \"updatedAt\":

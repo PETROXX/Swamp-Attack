@@ -3,9 +3,9 @@ using UnityEngine;
 using TMPro;
 using System;
 
-[RequireComponent(typeof(Spawner))]
+[RequireComponent(typeof(EnemySpawner))]
 
-public class Wave : MonoBehaviour
+public class EnemyWave : MonoBehaviour
 {
     private Stopwatch _waveStopwatch;
     private Stopwatch _cooldownStopwatch;
@@ -21,7 +21,7 @@ public class Wave : MonoBehaviour
 
     [SerializeField] private TextController _textController;
 
-    private Spawner _spawner;
+    private EnemySpawner _spawner;
 
     private float _waveLength;
     private bool _isWaveEnded;
@@ -30,7 +30,7 @@ public class Wave : MonoBehaviour
 
     private void Start()
     {
-        _spawner = GetComponent<Spawner>();
+        _spawner = GetComponent<EnemySpawner>();
         _waveLength = _basicWaveLength;
         _waveNumber = 1;
         _cooldownStopwatch = new Stopwatch();
@@ -79,5 +79,10 @@ public class Wave : MonoBehaviour
         _waveStopwatch.Start();
         _spawner.RestartWave();
         _waveText.text = $"Wave {_waveNumber}";
+    }
+
+    public void SetWaveLeght(float length)
+    {
+        _basicWaveLength = length;
     }
 }

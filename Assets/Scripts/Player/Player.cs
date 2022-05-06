@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private GameObject _shopPanel;
 
-    private Spawner _spawner;
+    private EnemySpawner _spawner;
 
     private PlayerAnimation _playerAnimations;
     private PlayerShooting _playerShooting;
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _spawner = FindObjectOfType<Spawner>();
+        _spawner = FindObjectOfType<EnemySpawner>();
         _isDead = false;
 
         _playerAnimations = GetComponent<PlayerAnimation>();

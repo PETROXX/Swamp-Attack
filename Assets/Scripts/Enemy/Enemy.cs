@@ -1,5 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using System;
+
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(SpriteRenderer))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -8,9 +11,12 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private BoxCollider2D _collider;
     [SerializeField] private Animator _animator;
+    [SerializeField] private EnemyRemoteConfig _remoteConfig;
 
     [SerializeField] private float _health;
     [SerializeField] private int _rewardForKill;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _damage;
 
     private Transform _target;
     private Player _player;
@@ -19,14 +25,30 @@ public class Enemy : MonoBehaviour
     private Rigidbody2D _rigidbody;
 
     public bool IsDead { get; private set; }
+    public float Speed => _speed;
+    public float Damage => _damage;
+
+    public event Action OnSpeedUpdated;
+    public event Action OnDamageUpdated;
 
     private void Start()
     {
+        _remoteConfig.OnParametersLoaded += ChangeParameters;
         _player = FindObjectOfType<Player>();
         _target = _player.transform;
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _health *= Random.Range(0.5f, 2f);
+    }
+
+    private void ChangeParameters(float health, float speed, float damage)
+    {
+        _health = health;
+        _speed = speed;
+        _damage = damage;
+
+        OnSpeedUpdated?.Invoke();
+        OnDamageUpdated?.Invoke();
     }
 
     public void GetDamage(float damage)

@@ -2,9 +2,9 @@ using System.Collections;
 using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(Wave))]
+[RequireComponent(typeof(EnemyWave))]
 
-public class Spawner : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject _zombie;
     [SerializeField] private Transform _spawnPoint;
@@ -13,15 +13,15 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int _maxEnemyCount;
 
     private float _spawnCooldown;
-    private int _enemyPerSpawn;
+    private int _enemyPerSpawn = 1;
 
-    private Wave _wave;
+    private EnemyWave _wave;
     private bool _isWaveEnabled;
 
     private void Start()
     {
+        _wave = GetComponent<EnemyWave>();
         _spawnCooldown = _firstWaveSpawnCooldown;
-        _wave = GetComponent<Wave>();
         _isWaveEnabled = true;
         StartCoroutine(Spawn());
     }
