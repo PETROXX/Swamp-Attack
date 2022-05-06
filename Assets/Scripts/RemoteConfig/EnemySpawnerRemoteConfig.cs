@@ -27,5 +27,7 @@ public class EnemySpawnerRemoteConfig : MonoBehaviour
         float waveLength = ConfigManager.appConfig.GetFloat(_waveLenght);
         int enemiesPerSpawn = ConfigManager.appConfig.GetInt(_enemiesPerSpawn);
 
+        _enemyWave.SetWaveLeght(waveLength);
+        _enemySpawner.SetEnemiesPerSpawnAndSpawnRate(enemiesPerSpawn, spawnRate);
     }
 }

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -487,6 +487,51 @@ MonoBehaviour:
   _bulletSpawnPosition: {fileID: 2038574709}
   _playerMovement: {fileID: 160014580}
   _shopPanel: {fileID: 1062790938}
+--- !u!1 &211348070
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 211348072}
+  - component: {fileID: 211348071}
+  m_Layer: 0
+  m_Name: VictoryDay
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &211348071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211348070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79a063ee221dc174490d34633f1f8a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _victoryDayBackground: {fileID: 0}
+  _backgroundImage: {fileID: 0}
+--- !u!4 &211348072
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 211348070}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &252528531
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,8 +829,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f908c0002c21706479caf79a4e95b4d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyWave: {fileID: 0}
-  _enemySpawner: {fileID: 0}
+  _enemyWave: {fileID: 339672928}
+  _enemySpawner: {fileID: 339672926}
 --- !u!1 &445592102
 GameObject:
   m_ObjectHideFlags: 0

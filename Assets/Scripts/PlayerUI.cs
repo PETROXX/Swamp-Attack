@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class UIDisplay : MonoBehaviour
+public class PlayerUI : MonoBehaviour
 {
     [SerializeField] private Player _player;
     [SerializeField] private PlayerShooting _playerShooting;

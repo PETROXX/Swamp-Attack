@@ -12,8 +12,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private List<GameObject> _enemies;
     [SerializeField] private int _maxEnemyCount;
 
-    private float _spawnCooldown;
-    private int _enemyPerSpawn = 1;
+    private float _spawnRate;
+    private int _enemiesPerSpawn = 1;
 
     private EnemyWave _wave;
     private bool _isWaveEnabled;
@@ -21,16 +21,16 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         _wave = GetComponent<EnemyWave>();
-        _spawnCooldown = _firstWaveSpawnCooldown;
+        _spawnRate = _firstWaveSpawnCooldown;
         _isWaveEnabled = true;
         StartCoroutine(Spawn());
     }
 
     private IEnumerator Spawn()
     {
-        _enemyPerSpawn = _wave.WaveNumber + Random.Range(0, _wave.WaveNumber + 1);
+        _enemiesPerSpawn = _wave.WaveNumber + Random.Range(0, _wave.WaveNumber + 1);
 
-        for (int i = 0; i < _enemyPerSpawn; i++)
+        for (int i = 0; i < _enemiesPerSpawn; i++)
         {
             GameObject enemy = Instantiate(_zombie, _spawnPoint.position, Quaternion.identity);
 
@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviour
 
         }
 
-        yield return new WaitForSeconds(_spawnCooldown);
+        yield return new WaitForSeconds(_spawnRate);
 
         if (_isWaveEnabled)
             StartCoroutine(Spawn());
@@ -59,6 +59,12 @@ public class EnemySpawner : MonoBehaviour
     {
         _isWaveEnabled = true;
         StartCoroutine(Spawn());
-        _spawnCooldown = _firstWaveSpawnCooldown / Mathf.Pow(_wave.WaveNumber, 1/3);
+        _spawnRate = _firstWaveSpawnCooldown / Mathf.Pow(_wave.WaveNumber, 1/3);
+    }
+
+    public void SetEnemiesPerSpawnAndSpawnRate(int enemiesPerSpawn, float spawnRate)
+    {
+        _spawnRate = spawnRate;
+        _enemiesPerSpawn = enemiesPerSpawn;
     }
 }

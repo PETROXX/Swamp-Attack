@@ -7,9 +7,6 @@ using System;
 
 public class EnemyWave : MonoBehaviour
 {
-    private Stopwatch _waveStopwatch;
-    private Stopwatch _cooldownStopwatch;
-
     [SerializeField] private int _waveNumber;
     [Tooltip("Длина первой волны, потом это значение будет увеличиваться по формуле")]
     [SerializeField] private float _basicWaveLength;
@@ -25,6 +22,9 @@ public class EnemyWave : MonoBehaviour
 
     private float _waveLength;
     private bool _isWaveEnded;
+
+    private Stopwatch _waveStopwatch;
+    private Stopwatch _cooldownStopwatch;
 
     public int WaveNumber => _waveNumber;
 
@@ -84,5 +84,6 @@ public class EnemyWave : MonoBehaviour
     public void SetWaveLeght(float length)
     {
         _basicWaveLength = length;
+        _waveLength = _basicWaveLength * Mathf.Sqrt(_waveNumber);
     }
 }
