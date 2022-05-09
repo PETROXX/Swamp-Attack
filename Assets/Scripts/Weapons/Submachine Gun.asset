@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89df41a95300a824a9b3d09a94fe0b4d, type: 3}
+  m_Name: Submachine Gun
+  m_EditorClassIdentifier: 
+  _name: Submachine gun
+  _description: Has a large ammo capacity and is great for destroying hordes of zombies
+  _price: 1000
+  _weaponIcon: {fileID: 21300000, guid: 3ee3fe62cf38e184695e27a9935a3db9, type: 3}
+  _ammoSprite: {fileID: 21300000, guid: 8969006b4eff0a24bbd37a6369134353, type: 3}
+  _ammoProductPrefab: {fileID: 7164366269118072660, guid: 202634334066ae346927882aa2562124, type: 3}
+  _damage: 10
+  _fireRate: 0.05
+  _cellSize: 100
+  _reloadSpeed: 2
+  _ammo: 695
+  _bulletSpeed: 25
+  _bulletPrefab: {fileID: 1889569603473541684, guid: 1a7189ef15b20444b819be2075c8b9cc, type: 3}
